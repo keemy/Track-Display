@@ -14,6 +14,23 @@ function getResults(race){
 		
 }
 
+var meetList;
+function getMeets(){
+	$.ajax("getMeets.py").done(function(data){
+			// add logic to display 
+			
+		
+		})
+
+
+}
+
+function getEvents(){}
+
+function getPeople(){}
+
+
+
 
 
 $( document ).ready(function() {
