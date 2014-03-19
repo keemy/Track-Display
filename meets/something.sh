@@ -6,8 +6,8 @@ MEET_NAME=$3
 
 screen -t hello
 
-mkdir /var/www/Track-Display/meets/${MEET_NAME}
-cd /var/www/Track-Display/meets/${MEET_NAME}
+mkdir /var/www/Track-Display/meets/#${MEET_NAME}
+cd /var/www/Track-Display/meets/#${MEET_NAME}
 
 
 
