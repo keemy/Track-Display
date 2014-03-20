@@ -16,21 +16,20 @@ function getResults(race){
 
 
 function getMeets(){
-	$.ajax("getMeets.py").done(function(data){
-			// to stuff to show meets 
-			data=$.parseJSON(data);
-			for(var i=0; i<data.length;i++){
-				var meet=data[i];
-				var option= "<option value='"+meet+"'>"+meet+"</option>"
-				$(".form #Meet").append(option)
-			}
-		})
-
-
+	var promise = $.ajax("getMeets.py").done(function(data){
+		// to stuff to show meets 
+		data=$.parseJSON(data);
+		for(var i=0; i<data.length;i++){
+			var meet=data[i];
+			var option= "<option value='"+meet+"'>"+meet+"</option>";
+			$(".form#Meet").append(option);
+		}
+	})
+	return promise
 }
 
 
-function getEvents(){
+function getEvents(meet){
 	$.ajax({
 		type: "GET",
 		data: {event: race},
@@ -44,7 +43,7 @@ function getEvents(){
 
 }
 
-function getPeople(){
+function getPeople(meet){
 	$.ajax({
 		type: "GET",
 		data: {event: race},
@@ -62,16 +61,27 @@ function getPeople(){
 
 
 $( document ).ready(function() {
+	var promise = getMeets();
+	promise.done(function(){
+		$(".form#Meet").change(function(){
+			getEvents($(".form#Meet :selected").val());
+			getPeople($(".form#Meet :selected").val());
+		})
 	
-	
-	$("#Event").change(function(){
-		if($("#Event :selected").val() =="all"){
-			$(".heat").css('display','block');
-		}else{
-			$(".heat").css('display','none');
-			$(".heat#"+$("#Event :selected").val()).css('display','block')
-		}
 	});
+	
+	
+	
+	
+	
+	// $("#Event").change(function(){
+		// if($("#Event :selected").val() =="all"){
+			// $(".heat").css('display','block');
+		// }else{
+			// $(".heat").css('display','none');
+			// $(".heat#"+$("#Event :selected").val()).css('display','block')
+		// }
+	// });
 
 
 
