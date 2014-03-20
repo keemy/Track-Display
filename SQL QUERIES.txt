@@ -1,11 +1,13 @@
-SELECT at.First_name,at.Last_name,en.Fin_time,ev.Event_dist,ev.Event_sex,at.Schl_yr,te.Team_name
+SELECT at.First_name,at.Last_name,at.Schl_yr,te.Team_name,en.Fin_time,en.Fin_wind,en.Fin_heat,
+       ev.Event_dist,ev.Event_stroke,ev.event_note,ev.Event_sex,
+	    
 FROM
 	Entry en
 	INNER JOIN Athlete at ON at.Ath_no=en.Ath_no
 	INNER JOIN Event ev ON ev.Event_ptr=en.Event_ptr
 	INNER JOIN Team te ON at.Team_no=te.Team_no
-	WHERE en.Fin_time!=0
-	
+	INNER JOIN Divisions di on ev.Div_no=di.Div_no
+	WHERE event or person lookup
 	
 	
 	
