@@ -14,7 +14,7 @@ import os
 import sys
 cgitb.enable()
 
-meets=[i[1:] for i in os.listdir("/var/www/Track-Display/meets") if i[0]=="#"]
+meets= os.listdir("/var/www/Track-Display/meets")
 
 
 

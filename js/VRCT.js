@@ -64,8 +64,11 @@ $( document ).ready(function() {
 	var promise = getMeets();
 	promise.done(function(){
 		$(".form#Meet").change(function(){
-			getEvents($(".form#Meet :selected").val());
-			getPeople($(".form#Meet :selected").val());
+			var meetName=$(".form#Meet :selected").val()
+			if(meetName!=""){
+				getEvents(meetName);
+				getPeople(meedName);
+			}
 		})
 	
 	});
