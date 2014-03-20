@@ -1,0 +1,12 @@
+SELECT at.First_name,at.Last_name,en.Fin_time,ev.Event_dist,ev.Event_sex,at.Schl_yr,te.Team_name
+FROM
+	Entry en
+	INNER JOIN Athlete at ON at.Ath_no=en.Ath_no
+	INNER JOIN Event ev ON ev.Event_ptr=en.Event_ptr
+	INNER JOIN Team te ON at.Team_no=te.Team_no
+	WHERE en.Fin_time!=0
+	
+	
+	
+	
+SELECT at.First_name,at.Last_name,en.Fin_time,ev.Event_dist,ev.Event_sex,at.Schl_yr,te.Team_name FROM Entry en INNER JOIN Athlete at ON at.Ath_no=en.Ath_no INNER JOIN Event ev ON ev.Event_ptr=en.Event_ptr INNER JOIN Team te ON at.Team_no=te.Team_no WHERE en.Ath_no=34829
