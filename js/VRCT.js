@@ -63,7 +63,7 @@ function getEvents(meet){
 				
 				var eventName=temp.join(" ");
 				var option= "<option value="+event[0]+">"+eventName+"</option>";
-				$(".form#People").append(option);
+				$(".form#Events").append(option);
 			}
 		
 		
