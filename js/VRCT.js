@@ -32,10 +32,10 @@ function getMeets(){
 function getEvents(meet){
 	$.ajax({
 		type: "GET",
-		data: {event: race},
-		url: "eventManager.py"
+		data: {meetName: meet},
+		url: "getEvents.py"
 		}).done(function(data){
-			// add logic to display 
+			console.log(data); 
 		
 		
 		})
@@ -44,16 +44,21 @@ function getEvents(meet){
 }
 
 function getPeople(meet){
-	$.ajax({
+	var promise=$.ajax({
 		type: "GET",
-		data: {event: race},
-		url: "eventManager.py"
+		data: {meetName: meet},
+		url: "getPeople.py"
 		}).done(function(data){
-			// add logic to display 
-		
+			data=$.parseJSON(data);
+			for(var i=0; i<data.length;i++){
+				var person=data[i];
+				//person = [person ID, First Name, Last Name]
+				var option= "<option value="+person[0]+">"+person[1]+" "+person[2]+"</option>";
+				$(".form#People").append(option);
+			}
 		
 		})
-
+	return promise;
 }
 
 
@@ -67,7 +72,7 @@ $( document ).ready(function() {
 			var meetName=$(".form#Meet :selected").val()
 			if(meetName!=""){
 				getEvents(meetName);
-				getPeople(meedName);
+				getPeople(meetName);
 			}
 		})
 	
