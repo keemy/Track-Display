@@ -80,10 +80,10 @@ function getResults(meet,eop,datum){
 		type: "GET",
 		url: "getResults.py",
 		data:{
-			meetName:meet,
-			eventOrPerson:eop,
-			event:datum,
-			person:datum
+			meetName: meet,
+			eventOrPerson: eop,
+			event: datum,
+			person: datum
 		}
 		}).done(function(data){
 			data=$.parseJSON(data);

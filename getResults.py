@@ -48,8 +48,8 @@ if form["eventOrPerson"].value == "p":
 		INNER JOIN Team te ON at.Team_no=te.Team_no
 		INNER JOIN Divisions di on ev.Div_no=di.Div_no
 	WHERE 
-		at.First_name=? AND at.Last_name=?
-	""", (form["firstName"].value,form["lastName"].value ) )
+		at.Ath_no=?
+	""", (int(form["person"].value)) )
 
 
 	print json.dumps( c.fetchall() )
