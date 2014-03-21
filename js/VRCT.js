@@ -29,17 +29,46 @@ function getMeets(){
 }
 
 
+var eventDict={
+	A:"Dash",
+	B:"Run",
+	E:"Hurdles",
+	W:"Relay",
+	M:"Long Jump",
+	K:"High Jump",
+	N:"Triple Jump",
+	R:"Shot Put",
+	L:"Pole Vault"
+};
+
 function getEvents(meet){
-	$.ajax({
+	var promise=$.ajax({
 		type: "GET",
 		data: {meetName: meet},
 		url: "getEvents.py"
 		}).done(function(data){
-			console.log(data); 
+			data=$.parseJSON(data);
+			for(var i=0; i<data.length;i++){
+				var event=data[i];
+				//event = Event_ptr, Event_no, Event_dist, Event_stroke, event_note, Event_sex, Div_no, Div_name
+				
+				var sex= event[5]=="M" ? "Boys" : "Girls";
+				var distance=event[2]>0?(event[2].toString()+" M"):"";
+				var type=eventDict[event[3]];
+				var note=$.trim(event[4]);
+				var division=event[7];
+
+				var temp=[sex,distance,type,note,division];
+				temp.filter(function(elm){return elm!="";});
+				
+				var eventName=temp.join(" ");
+				var option= "<option value="+event[0]+">"+eventName+"</option>";
+				$(".form#People").append(option);
+			}
 		
 		
 		})
-
+	return promise;
 
 }
 
