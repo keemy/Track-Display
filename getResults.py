@@ -49,7 +49,7 @@ if form["eventOrPerson"].value == "p":
 		INNER JOIN Divisions di on ev.Div_no=di.Div_no
 	WHERE 
 		at.Ath_no=?
-	""", (int(form["person"].value)) )
+	""", (int(form["person"].value),) )
 
 
 	print json.dumps( c.fetchall() )
@@ -69,7 +69,7 @@ elif form["eventOrPerson"].value == "e":
 		at.First_name=? AND at.Last_name=?
 	""", (form["firstName"].value,form["lastName"].value ) )
 
-c.execute("INSERT INTO bets VALUES(?,?,?,?,?,?,?,time('now'))",(better, betreceiver, description,amount,0,fulltext, str(hash(fulltext+str(datetime.datetime.now())))))
+
 
 conn.commit()
 conn.close()
