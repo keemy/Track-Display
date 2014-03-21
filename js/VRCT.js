@@ -130,6 +130,16 @@ $( document ).ready(function() {
 	});
 	
 	
+	$(".form#People").change(function(){
+		var meetName=$(".form#Meet :selected").val();
+		var personId=$(".form#People :selected").val();
+		
+		getResults(meetName,"p",personId);
+	
+	
+	
+	});
+	
 	
 	
 	
